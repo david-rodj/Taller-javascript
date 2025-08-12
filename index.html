@@ -15,36 +15,11 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/styles.css" />
-    <style>
-      body {
-        font-family: "Montserrat", Arial, sans-serif;
-      }
-
-      /* Estilos para el carrito de compras */
-      #cart-dropdown {
-        max-height: 400px;
-        overflow-y: auto;
-      }
-
-      /* Estilos para las tarjetas de productos */
-      .card {
-        transition: transform 0.2s ease-in-out;
-        cursor: pointer;
-      }
-
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Estilos para el botón del carrito */
-      .cart-icon:hover {
-        opacity: 0.8;
-        transition: opacity 0.2s;
-      }
-    </style>
   </head>
-  <body style="background-color: #f5f2e7">
+  <body>
+    <!-- Overlay para cerrar carrito al hacer click fuera -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+
     <!-- Header con navegación y carrito -->
     <nav
       class="navbar navbar-light sticky-top"
@@ -57,20 +32,24 @@
             alt="Lunatix logo"
             width="200"
             height="45"
+            style="object-fit: contain"
           />
         </a>
-        <a
+        <div
           class="nav-item me-5 cart-icon"
-          href="#"
+          id="cart-icon"
           aria-label="Ver carrito de compras"
         >
           <img
             src="../img/image.png"
             alt="Carrito de compras"
-            width="33"
-            height="33"
+            width="40"
+            height="40"
           />
-        </a>
+          <span class="cart-badge" id="cart-badge" style="display: none"
+            >0</span
+          >
+        </div>
       </div>
     </nav>
 
@@ -114,7 +93,7 @@
                     style="height: 350px"
                   >
                     <img
-                      src="../img/logo-Photoroom.jpg"
+                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F46%2F7e%2F18%2F467e1898756d3f3aa1f22a2c57fc5ee3.jpg&f=1&nofb=1"
                       class="d-block"
                       alt="Logo LUNATIX"
                       style="height: 300px; object-fit: contain"
@@ -125,7 +104,7 @@
                     style="height: 350px"
                   >
                     <img
-                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe2%2F64%2Fcd%2Fe264cd49b2f825656572b937ddd61f44.png&f=1&nofb=1&ipt=338462c0eff1dc12a87673148695f4973db053a7f7fba2e4e902c82cedcbcdd7"
+                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe2%2F64%2Fcd%2Fe264cd49b2f825656572b937ddd61f44.png&f=1&nofb=1"
                       class="d-block"
                       alt="Inspiración 1"
                       style="height: 300px; object-fit: contain"
@@ -136,7 +115,7 @@
                     style="height: 350px"
                   >
                     <img
-                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F46%2F7e%2F18%2F467e1898756d3f3aa1f22a2c57fc5ee3.jpg&f=1&nofb=1&ipt=7481228fa5e894101e1b8bed21b9e27f5720170238439c1d14d3a460b57e79df"
+                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F46%2F7e%2F18%2F467e1898756d3f3aa1f22a2c57fc5ee3.jpg&f=1&nofb=1"
                       class="d-block"
                       alt="Inspiración 2"
                       style="height: 300px; object-fit: contain"
@@ -177,14 +156,14 @@
       <section id="products">
         <div class="container-fluid">
           <h2 class="text-center py-4 fs-1 fw-bold">Nuestra Tienda</h2>
-          <div class="row px-5">
+          <div class="row px-5" id="products-container">
             <!-- Producto 1: Jean baggy bordado -->
             <div
               class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FSd001e52a13c5477697e7c230cd5a12f1m%2FY2K-Jeans-Harajuku-Retro-Skull-Graphic-pantalones-vaqueros-holgados-pantalones-negros-para-hombres-nuevos-Punk-Rock.jpg&f=1&nofb=1&ipt=332039f3b045653084557127b5fd59e3c8bea4d243cb204a9a511dd7ac5018ca"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FSd001e52a13c5477697e7c230cd5a12f1m%2FY2K-Jeans-Harajuku-Retro-Skull-Graphic-pantalones-vaqueros-holgados-pantalones-negros-para-hombres-nuevos-Punk-Rock.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Jean baggy bordado"
                 />
@@ -196,12 +175,7 @@
                     <strong>Color:</strong> Azul oscuro
                   </p>
                   <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -212,7 +186,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Feb%2F55%2Ffb%2Feb55fb1ab21bd8c31a3898509f237d2e.jpg&f=1&nofb=1&ipt=99cac212d1d57dd8d95219740b73205bcab19a4ba688d1fd1e34ba063d9bd0eb"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Feb%2F55%2Ffb%2Feb55fb1ab21bd8c31a3898509f237d2e.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Jean regular fit Bapesta"
                 />
@@ -222,12 +196,7 @@
                   <p class="card-text mb-1"><strong>Talla:</strong> 28 - 32</p>
                   <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
                   <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -238,7 +207,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe1%2F1b%2F80%2Fe11b803c5aac07e1fe531a390b436b98.jpg&f=1&nofb=1&ipt=bff1e342429400326c62472631d3e8de14c44ca932efa4cd9ec2358020d9ab47"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe1%2F1b%2F80%2Fe11b803c5aac07e1fe531a390b436b98.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Jean bota campana bordado"
                 />
@@ -248,12 +217,7 @@
                   <p class="card-text mb-1"><strong>Talla:</strong> S - L</p>
                   <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
                   <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -264,7 +228,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F93%2F67%2F4f%2F93674fe941391677321e0be072a439ae.jpg&f=1&nofb=1&ipt=2718abf874e1878d7883d16b8227b71bf8864cce1d86243318ee225af8cbb2e4"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F93%2F67%2F4f%2F93674fe941391677321e0be072a439ae.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Jort bordado"
                 />
@@ -274,12 +238,7 @@
                   <p class="card-text mb-1"><strong>Talla:</strong> 26-32</p>
                   <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
                   <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -290,7 +249,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fa.allegroimg.com%2Foriginal%2F11b729%2Fed1f6c054f96a38896b43124e1a7%2FBLUZA-Y2K-Full-Zip-Hoodies-Hip-Hop-Graphic-Print-H&f=1&nofb=1&ipt=fa7b9e3afd1f66746d451f7a1fe406958f0fe9101b21b8880d56d381024de7f6"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fa.allegroimg.com%2Foriginal%2F11b729%2Fed1f6c054f96a38896b43124e1a7%2FBLUZA-Y2K-Full-Zip-Hoodies-Hip-Hop-Graphic-Print-H&f=1&nofb=1"
                   class="card-img-top"
                   alt="Chaqueta 4tune"
                 />
@@ -302,12 +261,7 @@
                   <p class="card-text mb-1">
                     <strong>Material:</strong> Algodón
                   </p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -318,7 +272,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fboogzelclothing.com%2Fcdn%2Fshop%2Ffiles%2Fy2kcamouflagetubetopboogzelclothing_1_1024x.jpg%3Fv%3D1727061571&f=1&nofb=1&ipt=8254cd2ada780c0a24c48c4569694811ed3632c52297b9020ece7e3797bd475d"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fboogzelclothing.com%2Fcdn%2Fshop%2Ffiles%2Fy2kcamouflagetubetopboogzelclothing_1_1024x.jpg%3Fv%3D1727061571&f=1&nofb=1"
                   class="card-img-top"
                   alt="Blusa camouflage"
                 />
@@ -332,12 +286,7 @@
                   <p class="card-text mb-1">
                     <strong>Material:</strong> Algodón
                   </p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -348,7 +297,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fc2%2F2a%2Fb1%2Fc22ab1588f15a58682933f8c5446a0c1.jpg&f=1&nofb=1&ipt=ad2636629897da3fc9194b109cb6cb5adf59c1f61414354cf1d0ac89eedd0dfd"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fc2%2F2a%2Fb1%2Fc22ab1588f15a58682933f8c5446a0c1.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Camisa Korn"
                 />
@@ -362,12 +311,7 @@
                   <p class="card-text mb-1">
                     <strong>Material:</strong> Algodón
                   </p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -378,7 +322,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F23%2F51%2Fcd%2F2351cde234b31496f7687b8f8430023d.jpg&f=1&nofb=1&ipt=1d8f71f974baad0add9cb3ecc9936007923249776854b95ccabe3364a593a064"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F23%2F51%2Fcd%2F2351cde234b31496f7687b8f8430023d.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Chaqueta de dragon"
                 />
@@ -390,12 +334,7 @@
                   <p class="card-text mb-1">
                     <strong>Material:</strong> Algodón
                   </p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -406,7 +345,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2d%2Fd7%2Fca%2F2dd7ca9d47af5fa56320ac0bdefba76d.jpg&f=1&nofb=1&ipt=85bb07dc62b35e60cb0bd5fca5571b0524b84739cdda3aad3a67436d7a3c2069"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2d%2Fd7%2Fca%2F2dd7ca9d47af5fa56320ac0bdefba76d.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Chaqueta red dot"
                 />
@@ -418,12 +357,7 @@
                   <p class="card-text mb-1">
                     <strong>Material:</strong> Algodón
                   </p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -434,7 +368,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F53%2F19%2F64%2F531964ded838c9dfaa62dae631f25f5a.jpg&f=1&nofb=1&ipt=0ac1d22167bf5497f5001d4bf148c2291c60e59176163cb474cb1e11471994f7"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F53%2F19%2F64%2F531964ded838c9dfaa62dae631f25f5a.jpg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Beanie telaraña"
                 />
@@ -446,12 +380,7 @@
                   <p class="card-text mb-1">
                     <strong>Material:</strong> Algodón
                   </p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -462,7 +391,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FFossil-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1&ipt=4992a9a8fef0aa5549e36ebab998dea105f88e2802a9cf003747a4f7a811298b"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FFossil-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Cinturón de cuero rojo"
                 />
@@ -472,12 +401,7 @@
                   <p class="card-text mb-1"><strong>Talla:</strong> Única</p>
                   <p class="card-text mb-1"><strong>Color:</strong> Rojo</p>
                   <p class="card-text mb-1"><strong>Material:</strong> Cuero</p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -488,7 +412,7 @@
             >
               <div class="card" style="width: 18rem">
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FChicos-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1&ipt=73dc15bbfbc3222667817d606794713e3bb7b4ccb554e66a05043e2e83f64d40"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FChicos-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1"
                   class="card-img-top"
                   alt="Cinturón tipo cebra"
                 />
@@ -500,12 +424,7 @@
                     <strong>Color:</strong> Blanco y negro
                   </p>
                   <p class="card-text mb-1"><strong>Material:</strong> Cuero</p>
-                  <button
-                    class="btn btn-primary"
-                    style="background-color: #5a1a1a; border-color: #5a1a1a"
-                  >
-                    Comprar
-                  </button>
+                  <button class="btn btn-primary add-to-cart">Comprar</button>
                 </div>
               </div>
             </div>
@@ -526,7 +445,7 @@
                   Agregar Nuevo Producto
                 </div>
                 <div class="card-body">
-                  <form class="form" novalidate>
+                  <form id="product-form" novalidate>
                     <div class="row g-3">
                       <!-- Campo nombre del producto -->
                       <div class="col-12">
@@ -621,14 +540,7 @@
                         <button type="reset" class="btn btn-outline-secondary">
                           Limpiar formulario
                         </button>
-                        <button
-                          type="submit"
-                          class="btn btn-primary"
-                          style="
-                            background-color: #5a1a1a;
-                            border-color: #5a1a1a;
-                          "
-                        >
+                        <button type="submit" class="btn btn-primary">
                           Agregar producto
                         </button>
                       </div>
@@ -642,12 +554,8 @@
       </section>
     </main>
 
-    <!-- Carrito de compras (dropdown oculto por defecto) -->
-    <div
-      id="cart-dropdown"
-      class="position-absolute end-0 mt-2 me-5 bg-white border rounded shadow"
-      style="z-index: 999; min-width: 350px; display: none"
-    >
+    <!-- Carrito de compras (dropdown) -->
+    <div id="cart-dropdown">
       <div
         class="p-3 border-bottom d-flex justify-content-between align-items-center"
       >
@@ -658,6 +566,12 @@
       </div>
       <div id="cart-items" class="p-3">
         <p class="text-muted mb-0">El carrito está vacío</p>
+      </div>
+      <div class="p-3 border-top">
+        <div class="d-flex justify-content-between align-items-center">
+          <strong>Total: <span id="cart-total">$0</span></strong>
+          <button class="btn btn-primary btn-sm">Proceder al pago</button>
+        </div>
       </div>
     </div>
 

@@ -1,5 +1,3 @@
-/* Estilos personalizados para LUNATIX */
-
 /* Variables de colores personalizados */
 :root {
   --color-primary: #5a1a1a;
@@ -20,6 +18,7 @@ body {
 }
 
 .cart-icon {
+  position: relative;
   transition: opacity 0.3s ease, transform 0.2s ease;
   cursor: pointer;
 }
@@ -91,11 +90,27 @@ body {
 
 /* Estilos para el carrito de compras */
 #cart-dropdown {
+  position: fixed !important;
+  top: 80px;
+  right: 20px;
   max-height: 500px;
   overflow-y: auto;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  min-width: 400px;
+  background-color: white;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+#cart-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 #cart-dropdown .table {
@@ -117,6 +132,23 @@ body {
 #cart-dropdown img {
   border-radius: 4px;
   border: 1px solid #e0e0e0;
+}
+
+/* Badge para cantidad de items en el carrito */
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 /* Estilos para el formulario de agregar producto */
@@ -188,6 +220,7 @@ section h2:after {
   #cart-dropdown {
     min-width: 280px;
     max-width: 90vw;
+    right: 10px;
   }
 
   .navbar-brand img {
@@ -211,7 +244,7 @@ section h2:after {
 
   #cart-dropdown {
     min-width: 250px;
-    margin-right: 1rem !important;
+    right: 5px;
   }
 
   .navbar-brand {
@@ -223,16 +256,20 @@ section h2:after {
   }
 }
 
+/* Animaciones */
 .card {
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Estilos para mejorar la accesibilidad */
-.btn:focus,
-.form-control:focus,
-.card:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Estilos para el footer */
@@ -245,29 +282,21 @@ footer p {
   margin: 0.25rem 0;
 }
 
-/* Estilos para estados de carga y errores */
-.loading {
-  opacity: 0.6;
-  pointer-events: none;
+/* Overlay para cerrar el carrito */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 5.0s ease;
 }
 
-.error-message {
-  color: #dc3545;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-.success-message {
-  color: #28a745;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-/* Estilos para la validación de formularios */
-.form-control.is-invalid {
-  border-color: #dc3545;
-}
-
-.form-control.is-valid {
-  border-color: #28a745;
+.cart-overlay.show {
+  opacity: 1;
+  visibility: visible;
 }
