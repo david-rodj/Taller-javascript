@@ -1,3 +1,5 @@
+/* Comentarios agregados para explicar los estilos principales */
+
 /* Variables de colores personalizados */
 :root {
   --color-primary: #5a1a1a;
@@ -17,6 +19,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Ícono del carrito con animación al hacer hover */
 .cart-icon {
   position: relative;
   transition: opacity 0.3s ease, transform 0.2s ease;
@@ -88,7 +91,7 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(90, 26, 26, 0.25) !important;
 }
 
-/* Estilos para el carrito de compras */
+/* Estilos para el carrito de compras flotante */
 #cart-dropdown {
   position: fixed !important;
   top: 80px;
@@ -211,7 +214,7 @@ section h2:after {
   border-radius: 2px;
 }
 
-/* Estilos responsive */
+/* Estilos responsive para pantallas pequeñas */
 @media (max-width: 768px) {
   .card {
     margin-bottom: 2rem;
@@ -256,7 +259,7 @@ section h2:after {
   }
 }
 
-/* Animaciones */
+/* Animaciones para las cards */
 .card {
   animation: fadeInUp 0.6s ease-out;
 }

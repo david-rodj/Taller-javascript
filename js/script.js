@@ -1,3 +1,5 @@
+// Comentarios agregados para explicar la funcionalidad de cada bloque
+
 // Array para almacenar los productos del carrito
 let carritoCompras = [];
 let cartVisible = false;
@@ -31,6 +33,7 @@ function inicializarEventos() {
  * Inicializa los eventos relacionados con el carrito
  */
 function inicializarEventosCarrito() {
+  // Elementos del carrito en el DOM
   const cartIcon = document.getElementById("cart-icon");
   const cartDropdown = document.getElementById("cart-dropdown");
   const cartOverlay = document.getElementById("cart-overlay");
@@ -100,6 +103,7 @@ function inicializarEventosCarrito() {
  * Inicializa los eventos de los productos existentes
  */
 function inicializarEventosProductos() {
+  // Selecciona todos los botones de compra en las cards
   const botonesCompra = document.querySelectorAll(".add-to-cart");
   console.log(`Configurando ${botonesCompra.length} botones de compra`);
 
@@ -159,6 +163,7 @@ function ocultarCarrito() {
 function agregarArticuloAlCarrito(botonCompra) {
   console.log("Agregando artículo al carrito...");
 
+  // Obtiene la tarjeta de producto y extrae la información
   const tarjetaProducto = botonCompra.closest(".card");
   const informacionProducto = extraerInformacionProducto(tarjetaProducto);
 
@@ -168,12 +173,14 @@ function agregarArticuloAlCarrito(botonCompra) {
   );
 
   if (articuloExistente) {
+    // Si existe, aumenta la cantidad
     articuloExistente.cantidad += 1;
     console.log(
       "Producto existente, nueva cantidad:",
       articuloExistente.cantidad
     );
   } else {
+    // Si no existe, lo agrega con cantidad 1
     carritoCompras.push({
       ...informacionProducto,
       cantidad: 1,
@@ -184,7 +191,7 @@ function agregarArticuloAlCarrito(botonCompra) {
   console.log("Estado actual del carrito:", carritoCompras);
   actualizarVisualizacionCarrito();
 
-  // Mostrar feedback visual
+  // Mostrar feedback visual en el botón
   mostrarFeedbackAgregado(botonCompra);
 }
 
@@ -192,10 +199,12 @@ function agregarArticuloAlCarrito(botonCompra) {
  * Extrae información del producto de la tarjeta HTML
  */
 function extraerInformacionProducto(tarjeta) {
+  // Obtiene nombre e imagen
   const nombre = tarjeta.querySelector(".card-title").textContent.trim();
   const imagenElemento = tarjeta.querySelector(".card-img-top");
   const imagen = imagenElemento.src;
 
+  // Obtiene el precio
   const elementosPrecio = tarjeta.querySelectorAll(".card-text");
   let precio = 0;
 
@@ -225,7 +234,7 @@ function actualizarVisualizacionCarrito() {
 
   if (!contenedorArticulos) return;
 
-  // Actualizar badge
+  // Actualizar badge de cantidad
   const totalItems = carritoCompras.reduce(
     (sum, item) => sum + item.cantidad,
     0
@@ -240,13 +249,14 @@ function actualizarVisualizacionCarrito() {
   }
 
   if (carritoCompras.length === 0) {
+    // Si el carrito está vacío, muestra mensaje y total en 0
     contenedorArticulos.innerHTML =
       '<p class="text-muted mb-0">El carrito está vacío</p>';
     if (cartTotal) cartTotal.textContent = "$0";
     return;
   }
 
-  // Construir tabla del carrito
+  // Construir tabla del carrito con imagen, nombre, precio y cantidad
   let htmlCarrito = `
               <table class="table table-sm mb-0">
                   <thead>
@@ -295,7 +305,7 @@ function actualizarVisualizacionCarrito() {
   htmlCarrito += "</tbody></table>";
   contenedorArticulos.innerHTML = htmlCarrito;
 
-  // Actualizar total
+  // Actualizar total del carrito
   if (cartTotal) {
     cartTotal.textContent = `${total.toLocaleString()}`;
   }
@@ -368,6 +378,7 @@ function mostrarFeedbackAgregado(boton) {
  * Procesa el formulario para agregar nuevos productos
  */
 function procesarNuevoProducto(formulario) {
+  // Obtiene los datos del formulario
   const datosProducto = {
     nombre: formulario.querySelector("#inputNombre").value.trim(),
     precio: formulario.querySelector("#inputPrecio").value.trim(),
@@ -377,6 +388,7 @@ function procesarNuevoProducto(formulario) {
     imagen: formulario.querySelector("#inputImagen").value.trim(),
   };
 
+  // Validación de los datos
   if (!validarDatosProducto(datosProducto)) {
     alert("Por favor, complete todos los campos del formulario.");
     return;
@@ -387,6 +399,7 @@ function procesarNuevoProducto(formulario) {
     return;
   }
 
+  // Crea la tarjeta del producto y la agrega a la tienda
   crearTarjetaProducto(datosProducto);
   formulario.reset();
   alert("Producto agregado exitosamente a la tienda.");
@@ -420,6 +433,7 @@ function validarDatosProducto(datos) {
 function crearTarjetaProducto(datosProducto) {
   const contenedorProductos = document.getElementById("products-container");
 
+  // Crea el HTML de la nueva tarjeta
   const nuevaTarjeta = document.createElement("div");
   nuevaTarjeta.className =
     "col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center";
@@ -449,7 +463,7 @@ function crearTarjetaProducto(datosProducto) {
 
   contenedorProductos.appendChild(nuevaTarjeta);
 
-  // Agregar evento al nuevo botón
+  // Agregar evento al nuevo botón de compra
   const nuevoBoton = nuevaTarjeta.querySelector(".add-to-cart");
   nuevoBoton.addEventListener("click", function (e) {
     e.preventDefault();

@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <!-- Metadatos y enlaces a fuentes, Bootstrap y estilos personalizados -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LUNATIX</title>
+    <!-- Fuente Montserrat desde Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
+    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
-    <!-- Overlay para cerrar carrito al hacer click fuera -->
+    <!-- Overlay para cerrar el carrito al hacer click fuera -->
     <div class="cart-overlay" id="cart-overlay"></div>
 
-    <!-- Header con navegación y carrito -->
+    <!-- Barra de navegación principal con logo y carrito -->
     <nav
       class="navbar navbar-light sticky-top"
       style="background-color: #f5f2e7"
     >
       <div class="container-fluid">
+        <!-- Logo de la tienda -->
         <a class="navbar-brand ms-5" href="#index.html">
           <img
             src="../img/logo2_transparente-Photoroom.png"
@@ -35,6 +40,7 @@
             style="object-fit: contain"
           />
         </a>
+        <!-- Ícono del carrito de compras con badge de cantidad -->
         <div
           class="nav-item me-5 cart-icon"
           id="cart-icon"
@@ -53,19 +59,21 @@
       </div>
     </nav>
 
-    <!-- Contenido principal -->
+    <!-- Contenido principal de la página -->
     <main>
-      <!-- Sección Acerca de nosotros -->
+      <!-- Sección Acerca de nosotros con carrusel de imágenes -->
       <section id="about-us">
         <div class="container-fluid">
           <div
             class="row py-5 text-white"
             style="min-height: 400px; background-color: black"
           >
+            <!-- Información de la empresa -->
             <div class="col d-flex align-items-center ms-5">
               <div>
                 <strong><h2 class="fs-2 fw-bold">LUNATIX</h2></strong>
                 <p class="fs-4">
+                  <!-- Descripción de la marca -->
                   Somos más que una tienda de ropa, este es un espacio para
                   espíritus libres, noctámbulos y buscadores de estilo sin
                   reglas. Fusionamos influencias urbanas, toques místicos y
@@ -77,6 +85,7 @@
                 </p>
               </div>
             </div>
+            <!-- Carrusel de imágenes de inspiración -->
             <div class="col d-flex justify-content-center align-items-center">
               <div
                 id="carouselExampleFade"
@@ -88,6 +97,7 @@
                   class="carousel-inner align-items-center"
                   style="height: 350px; display: flex"
                 >
+                  <!-- Imagen 1 -->
                   <div
                     class="carousel-item active d-flex justify-content-center align-items-center"
                     style="height: 350px"
@@ -99,6 +109,7 @@
                       style="height: 300px; object-fit: contain"
                     />
                   </div>
+                  <!-- Imagen 2 -->
                   <div
                     class="carousel-item d-flex justify-content-center align-items-center"
                     style="height: 350px"
@@ -110,6 +121,7 @@
                       style="height: 300px; object-fit: contain"
                     />
                   </div>
+                  <!-- Imagen 3 -->
                   <div
                     class="carousel-item d-flex justify-content-center align-items-center"
                     style="height: 350px"
@@ -122,6 +134,7 @@
                     />
                   </div>
                 </div>
+                <!-- Controles del carrusel -->
                 <button
                   class="carousel-control-prev"
                   type="button"
@@ -152,11 +165,12 @@
         </div>
       </section>
 
-      <!-- Sección de productos/tienda -->
+      <!-- Sección de productos/tienda con cards de productos -->
       <section id="products">
         <div class="container-fluid">
           <h2 class="text-center py-4 fs-1 fw-bold">Nuestra Tienda</h2>
           <div class="row px-5" id="products-container">
+            <!-- Cada producto se muestra como una card con imagen, nombre, precio, talla, color, material y botón de compra -->
             <!-- Producto 1: Jean baggy bordado -->
             <div
               class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
@@ -432,7 +446,7 @@
         </div>
       </section>
 
-      <!-- Sección de agregar artículo -->
+      <!-- Sección para agregar nuevos productos mediante formulario -->
       <section id="add-product">
         <div class="container-fluid">
           <div class="row justify-content-center mt-5 pb-5">
@@ -445,6 +459,7 @@
                   Agregar Nuevo Producto
                 </div>
                 <div class="card-body">
+                  <!-- Formulario para agregar productos -->
                   <form id="product-form" novalidate>
                     <div class="row g-3">
                       <!-- Campo nombre del producto -->
@@ -554,7 +569,7 @@
       </section>
     </main>
 
-    <!-- Carrito de compras (dropdown) -->
+    <!-- Carrito de compras (dropdown flotante) -->
     <div id="cart-dropdown">
       <div
         class="p-3 border-bottom d-flex justify-content-between align-items-center"
@@ -575,7 +590,7 @@
       </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer con información de derechos y lema -->
     <footer class="bg-dark text-white text-center py-4 mt-5">
       <div class="container">
         <p class="mb-1">© 2024 LUNATIX. Todos los derechos reservados.</p>
@@ -583,7 +598,7 @@
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts de Bootstrap y JS principal -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
