@@ -34,7 +34,7 @@
             height="45"
           />
         </a>
-        <a class="nav-item me-5" href="#index.html">
+        <a class="nav-item me-5" href="...">
           <img
             src="../img/image.png"
             alt="Carrito de compras"
@@ -444,11 +444,103 @@
           </div>
         </div>
       </section>
+      <section id="add-product">
+        <div class="mt-5 d-flex justify-content-center">
+        <div class="col-lg-6 col-sm-12">
+          <div class="card">
+            <div class="card-header text-center fw-bold fs-3">Agregar Producto</div>
+            <form class="p-3 row g-3 form" novalidate>
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputNombre"
+                  placeholder="Nombre del producto"
+                  required
+                />
+                <label for="inputNombre">Nombre</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="inputPrecio"
+                  placeholder="Precio"
+                  required
+                  min="0"
+                />
+                <label for="inputPrecio">Precio</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputTalla"
+                  placeholder="Talla"
+                  required
+                />
+                <label for="inputTalla">Talla</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputColor"
+                  placeholder="Color"
+                  required
+                />
+                <label for="inputColor">Color</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputMaterial"
+                  placeholder="Material"
+                  required
+                />
+                <label for="inputMaterial">Material</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="url"
+                  class="form-control"
+                  id="inputImagen"
+                  placeholder="URL de imagen"
+                  required
+                />
+                <label for="inputImagen">URL de imagen</label>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button type="reset" class="btn btn-warning me-2">
+                  Limpiar
+                </button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
     </main>
+        <!-- Carrito de compras (dropdown oculto por defecto) -->
+<div id="cart-dropdown" class="position-absolute end-0 mt-2 me-5 bg-white border rounded shadow" style="z-index: 999; min-width: 300px; display: none;">
+  <div class="p-2 border-bottom d-flex justify-content-between align-items-center">
+    <span class="fw-bold">Carrito de compras</span>
+    <button id="empty-cart-btn" class="btn btn-sm btn-danger">Vaciar carrito</button>
+  </div>
+  <div id="cart-items" class="p-2"></div>
+</div>
+    <footer class="text-center py-4">
+      <p class="mb-0">© 2023 LUNATIX. Todos los derechos reservados.</p>
+      <p class="mb-0">Dise
   </body>
+  <script src="/js/script.js"></script> 
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"
   ></script>
+  
 </html>
