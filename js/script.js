@@ -3,6 +3,7 @@ let carritoCompras = [];
 
 // Función para inicializar la aplicación cuando el DOM esté cargado
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM cargado, inicializando eventos...');
     inicializarEventosCarrito();
     inicializarFormularioAgregarProducto();
 });
@@ -12,12 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function inicializarEventosCarrito() {
     // Agregar event listeners a todos los botones de compra existentes
-    const botonesCompra = document.querySelectorAll('.btn-primary');
-    botonesCompra.forEach(boton => {
+    const botonesCompra = document.querySelectorAll('button.btn-primary');
+    console.log('Botones encontrados:', botonesCompra.length);
+    
+    botonesCompra.forEach((boton, index) => {
         // Solo agregar listener a los botones que dicen "Comprar"
         if (boton.textContent.trim() === 'Comprar') {
+            console.log(`Agregando listener al botón ${index + 1}`);
             boton.addEventListener('click', function(evento) {
                 evento.preventDefault();
+                console.log('Botón clickeado');
                 agregarArticuloAlCarrito(this);
             });
         }
@@ -38,11 +43,15 @@ function inicializarEventosCarrito() {
  * @param {HTMLElement} botonCompra - El botón de compra clickeado
  */
 function agregarArticuloAlCarrito(botonCompra) {
+    console.log('Agregando artículo al carrito...');
+    
     // Obtener la tarjeta del producto que contiene este botón
     const tarjetaProducto = botonCompra.closest('.card');
+    console.log('Tarjeta encontrada:', tarjetaProducto);
     
     // Extraer información del producto de la tarjeta
     const informacionProducto = extraerInformacionProducto(tarjetaProducto);
+    console.log('Información del producto:', informacionProducto);
     
     // Buscar si el artículo ya existe en el carrito
     const articuloExistente = carritoCompras.find(articulo => 
@@ -52,13 +61,17 @@ function agregarArticuloAlCarrito(botonCompra) {
     if (articuloExistente) {
         // Si ya existe, incrementar la cantidad
         articuloExistente.cantidad += 1;
+        console.log('Producto existente, nueva cantidad:', articuloExistente.cantidad);
     } else {
         // Si no existe, agregarlo con cantidad 1
         carritoCompras.push({
             ...informacionProducto,
             cantidad: 1
         });
+        console.log('Nuevo producto agregado al carrito');
     }
+    
+    console.log('Estado actual del carrito:', carritoCompras);
     
     // Actualizar la visualización del carrito
     actualizarVisualizacionCarrito();
@@ -74,60 +87,105 @@ function extraerInformacionProducto(tarjeta) {
     const imagenElemento = tarjeta.querySelector('.card-img-top');
     const imagen = imagenElemento.src;
     
-    // Extraer precio del texto que contiene "Precio:"
-    const textosPrecio = tarjeta.querySelectorAll('.card-text');
+    // Buscar el elemento que contiene el precio
+    const elementosPrecio = tarjeta.querySelectorAll('.card-text');
     let precio = '';
     
-    textosPrecio.forEach(texto => {
-        if (texto.textContent.includes('Precio:')) {
+    for (let elemento of elementosPrecio) {
+        if (elemento.textContent.includes('Precio:')) {
             // Extraer solo los números del precio
-            const coincidenciaPrecio = texto.textContent.match(/\$?([\d,.]+)/);
+            const textoCompleto = elemento.textContent;
+            console.log('Texto del precio:', textoCompleto);
+            const coincidenciaPrecio = textoCompleto.match(/\$(\d+)/);
             if (coincidenciaPrecio) {
-                precio = coincidenciaPrecio[1].replace(/[,.]/g, '');
+                precio = coincidenciaPrecio[1];
+                console.log('Precio extraído:', precio);
             }
+            break;
         }
-    });
+    }
     
-    return {
+    const producto = {
         nombre: nombre,
         precio: precio,
         imagen: imagen
     };
+    
+    console.log('Producto extraído:', producto);
+    return producto;
 }
 
 /**
  * Configura los eventos de hover para mostrar/ocultar el carrito
  */
 function configurarEventosCarrito() {
-    const iconoCarrito = document.querySelector('a[href="..."] img[alt="Carrito de compras"]').parentElement;
+    // Buscar el ícono del carrito de manera más específica
+    const iconoCarrito = document.querySelector('a.cart-icon');
     const desplegableCarrito = document.getElementById('cart-dropdown');
     
-    if (iconoCarrito && desplegableCarrito) {
+    console.log('Ícono del carrito:', iconoCarrito);
+    console.log('Dropdown del carrito:', desplegableCarrito);
+    
+    if (!iconoCarrito) {
+        console.error('No se encontró el ícono del carrito. Verificando elementos...');
+        // Buscar de manera alternativa
+        const iconoAlternativo = document.querySelector('img[alt="Carrito de compras"]');
+        if (iconoAlternativo) {
+            console.log('Ícono encontrado de manera alternativa:', iconoAlternativo.parentElement);
+            configurarEventosCarritoElemento(iconoAlternativo.parentElement, desplegableCarrito);
+        }
+        return;
+    }
+    
+    if (!desplegableCarrito) {
+        console.error('No se encontró el dropdown del carrito');
+        return;
+    }
+    
+    configurarEventosCarritoElemento(iconoCarrito, desplegableCarrito);
+}
+
+/**
+ * Configura los eventos de un elemento específico del carrito
+ */
+function configurarEventosCarritoElemento(elemento, desplegableCarrito) {
+    if (elemento && desplegableCarrito) {
         // Mostrar carrito al hacer hover sobre el ícono
-        iconoCarrito.addEventListener('mouseenter', function() {
+        elemento.addEventListener('mouseenter', function() {
+            console.log('Mouse entró al ícono del carrito');
             if (carritoCompras.length > 0) {
+                console.log('Mostrando carrito con', carritoCompras.length, 'productos');
                 desplegableCarrito.style.display = 'block';
+            } else {
+                console.log('Carrito vacío, no se muestra');
             }
         });
         
         // Ocultar carrito al salir del ícono (con delay para permitir moverse al dropdown)
-        iconoCarrito.addEventListener('mouseleave', function() {
+        elemento.addEventListener('mouseleave', function() {
+            console.log('Mouse salió del ícono del carrito');
             setTimeout(() => {
                 if (!desplegableCarrito.matches(':hover')) {
                     desplegableCarrito.style.display = 'none';
                 }
-            }, 100);
+            }, 200);
         });
         
         // Mantener carrito visible cuando el mouse esté sobre él
         desplegableCarrito.addEventListener('mouseenter', function() {
+            console.log('Mouse entró al dropdown del carrito');
             this.style.display = 'block';
         });
         
         // Ocultar carrito al salir del dropdown
         desplegableCarrito.addEventListener('mouseleave', function() {
+            console.log('Mouse salió del dropdown del carrito');
             this.style.display = 'none';
         });
+        
+        console.log('Eventos del carrito configurados correctamente');
+    } else {
+        console.error('No se pudieron configurar los eventos del carrito');
     }
 }
 
@@ -135,38 +193,49 @@ function configurarEventosCarrito() {
  * Actualiza la visualización del carrito de compras
  */
 function actualizarVisualizacionCarrito() {
+    console.log('Actualizando visualización del carrito...');
     const contenedorArticulos = document.getElementById('cart-items');
+    
+    if (!contenedorArticulos) {
+        console.error('No se encontró el contenedor de artículos del carrito');
+        return;
+    }
     
     if (carritoCompras.length === 0) {
         contenedorArticulos.innerHTML = '<p class="text-muted mb-0">El carrito está vacío</p>';
+        console.log('Carrito vacío, ocultando dropdown');
         return;
     }
+    
+    console.log('Generando HTML para', carritoCompras.length, 'productos');
     
     // Construir HTML de la tabla del carrito
     let htmlCarrito = `
         <table class="table table-sm mb-0">
             <thead>
                 <tr>
-                    <th>Imagen</th>
+                    <th style="width: 60px;">Imagen</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th>Cantidad</th>
+                    <th style="width: 80px;">Cantidad</th>
                 </tr>
             </thead>
             <tbody>
     `;
     
     carritoCompras.forEach(articulo => {
+        const precioFormateado = parseInt(articulo.precio).toLocaleString('es-CO');
         htmlCarrito += `
             <tr>
                 <td>
                     <img src="${articulo.imagen}" 
                          alt="${articulo.nombre}" 
-                         style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                         style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;"
+                         onerror="this.src='https://via.placeholder.com/40x40?text=?'">
                 </td>
-                <td class="align-middle">${articulo.nombre}</td>
-                <td class="align-middle">$${parseInt(articulo.precio).toLocaleString()}</td>
-                <td class="align-middle">${articulo.cantidad}</td>
+                <td class="align-middle" style="font-size: 0.85rem;">${articulo.nombre}</td>
+                <td class="align-middle" style="font-size: 0.85rem;">${precioFormateado}</td>
+                <td class="align-middle text-center" style="font-size: 0.85rem;">${articulo.cantidad}</td>
             </tr>
         `;
     });
@@ -177,12 +246,14 @@ function actualizarVisualizacionCarrito() {
     `;
     
     contenedorArticulos.innerHTML = htmlCarrito;
+    console.log('HTML del carrito actualizado');
 }
 
 /**
  * Vacía completamente el carrito de compras
  */
 function vaciarCarritoCompras() {
+    console.log('Vaciando carrito de compras...');
     carritoCompras = [];
     actualizarVisualizacionCarrito();
     
@@ -191,6 +262,8 @@ function vaciarCarritoCompras() {
     if (desplegableCarrito) {
         desplegableCarrito.style.display = 'none';
     }
+    
+    console.log('Carrito vaciado y ocultado');
 }
 
 /**

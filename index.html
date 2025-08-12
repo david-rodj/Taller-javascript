@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,13 +14,38 @@
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../css/styles.css" />
     <style>
       body {
         font-family: "Montserrat", Arial, sans-serif;
       }
+
+      /* Estilos para el carrito de compras */
+      #cart-dropdown {
+        max-height: 400px;
+        overflow-y: auto;
+      }
+
+      /* Estilos para las tarjetas de productos */
+      .card {
+        transition: transform 0.2s ease-in-out;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Estilos para el botón del carrito */
+      .cart-icon:hover {
+        opacity: 0.8;
+        transition: opacity 0.2s;
+      }
     </style>
   </head>
   <body style="background-color: #f5f2e7">
+    <!-- Header con navegación y carrito -->
     <nav
       class="navbar navbar-light sticky-top"
       style="background-color: #f5f2e7"
@@ -34,7 +59,11 @@
             height="45"
           />
         </a>
-        <a class="nav-item me-5" href="...">
+        <a
+          class="nav-item me-5 cart-icon"
+          href="#"
+          aria-label="Ver carrito de compras"
+        >
           <img
             src="../img/image.png"
             alt="Carrito de compras"
@@ -44,7 +73,10 @@
         </a>
       </div>
     </nav>
+
+    <!-- Contenido principal -->
     <main>
+      <!-- Sección Acerca de nosotros -->
       <section id="about-us">
         <div class="container-fluid">
           <div
@@ -84,7 +116,7 @@
                     <img
                       src="../img/logo-Photoroom.jpg"
                       class="d-block"
-                      alt="..."
+                      alt="Logo LUNATIX"
                       style="height: 300px; object-fit: contain"
                     />
                   </div>
@@ -95,7 +127,7 @@
                     <img
                       src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe2%2F64%2Fcd%2Fe264cd49b2f825656572b937ddd61f44.png&f=1&nofb=1&ipt=338462c0eff1dc12a87673148695f4973db053a7f7fba2e4e902c82cedcbcdd7"
                       class="d-block"
-                      alt="Inspo 1"
+                      alt="Inspiración 1"
                       style="height: 300px; object-fit: contain"
                     />
                   </div>
@@ -106,7 +138,7 @@
                     <img
                       src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F46%2F7e%2F18%2F467e1898756d3f3aa1f22a2c57fc5ee3.jpg&f=1&nofb=1&ipt=7481228fa5e894101e1b8bed21b9e27f5720170238439c1d14d3a460b57e79df"
                       class="d-block"
-                      alt="Inspo 2"
+                      alt="Inspiración 2"
                       style="height: 300px; object-fit: contain"
                     />
                   </div>
@@ -140,407 +172,509 @@
           </div>
         </div>
       </section>
+
+      <!-- Sección de productos/tienda -->
       <section id="products">
-        <div class="row px-5">
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FSd001e52a13c5477697e7c230cd5a12f1m%2FY2K-Jeans-Harajuku-Retro-Skull-Graphic-pantalones-vaqueros-holgados-pantalones-negros-para-hombres-nuevos-Punk-Rock.jpg&f=1&nofb=1&ipt=332039f3b045653084557127b5fd59e3c8bea4d243cb204a9a511dd7ac5018ca"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Jean baggy bordado</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $100.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> 28 - 32</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Azul oscuro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+        <div class="container-fluid">
+          <h2 class="text-center py-4 fs-1 fw-bold">Nuestra Tienda</h2>
+          <div class="row px-5">
+            <!-- Producto 1: Jean baggy bordado -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FSd001e52a13c5477697e7c230cd5a12f1m%2FY2K-Jeans-Harajuku-Retro-Skull-Graphic-pantalones-vaqueros-holgados-pantalones-negros-para-hombres-nuevos-Punk-Rock.jpg&f=1&nofb=1&ipt=332039f3b045653084557127b5fd59e3c8bea4d243cb204a9a511dd7ac5018ca"
+                  class="card-img-top"
+                  alt="Jean baggy bordado"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Jean baggy bordado</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $100000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> 28 - 32</p>
+                  <p class="card-text mb-1">
+                    <strong>Color:</strong> Azul oscuro
+                  </p>
+                  <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Feb%2F55%2Ffb%2Feb55fb1ab21bd8c31a3898509f237d2e.jpg&f=1&nofb=1&ipt=99cac212d1d57dd8d95219740b73205bcab19a4ba688d1fd1e34ba063d9bd0eb"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Jean regular fit Bapesta</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $120.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> 28 - 32</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 2: Jean regular fit Bapesta -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Feb%2F55%2Ffb%2Feb55fb1ab21bd8c31a3898509f237d2e.jpg&f=1&nofb=1&ipt=99cac212d1d57dd8d95219740b73205bcab19a4ba688d1fd1e34ba063d9bd0eb"
+                  class="card-img-top"
+                  alt="Jean regular fit Bapesta"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Jean regular fit Bapesta</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $120000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> 28 - 32</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
+                  <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe1%2F1b%2F80%2Fe11b803c5aac07e1fe531a390b436b98.jpg&f=1&nofb=1&ipt=bff1e342429400326c62472631d3e8de14c44ca932efa4cd9ec2358020d9ab47"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Jean bota camapna bordado</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $100.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> S - L</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 3: Jean bota campana bordado -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe1%2F1b%2F80%2Fe11b803c5aac07e1fe531a390b436b98.jpg&f=1&nofb=1&ipt=bff1e342429400326c62472631d3e8de14c44ca932efa4cd9ec2358020d9ab47"
+                  class="card-img-top"
+                  alt="Jean bota campana bordado"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Jean bota campana bordado</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $100000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> S - L</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
+                  <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F93%2F67%2F4f%2F93674fe941391677321e0be072a439ae.jpg&f=1&nofb=1&ipt=2718abf874e1878d7883d16b8227b71bf8864cce1d86243318ee225af8cbb2e4"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Jort bordado</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $80.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> 26-32</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 4: Jort bordado -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F93%2F67%2F4f%2F93674fe941391677321e0be072a439ae.jpg&f=1&nofb=1&ipt=2718abf874e1878d7883d16b8227b71bf8864cce1d86243318ee225af8cbb2e4"
+                  class="card-img-top"
+                  alt="Jort bordado"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Jort bordado</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $80000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> 26-32</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
+                  <p class="card-text mb-1"><strong>Material:</strong> Denim</p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fa.allegroimg.com%2Foriginal%2F11b729%2Fed1f6c054f96a38896b43124e1a7%2FBLUZA-Y2K-Full-Zip-Hoodies-Hip-Hop-Graphic-Print-H&f=1&nofb=1&ipt=fa7b9e3afd1f66746d451f7a1fe406958f0fe9101b21b8880d56d381024de7f6"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Chaqueta 4tune</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $100.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Blanco</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Algodón</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 5: Chaqueta 4tune -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fa.allegroimg.com%2Foriginal%2F11b729%2Fed1f6c054f96a38896b43124e1a7%2FBLUZA-Y2K-Full-Zip-Hoodies-Hip-Hop-Graphic-Print-H&f=1&nofb=1&ipt=fa7b9e3afd1f66746d451f7a1fe406958f0fe9101b21b8880d56d381024de7f6"
+                  class="card-img-top"
+                  alt="Chaqueta 4tune"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Chaqueta 4tune</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $100000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Blanco</p>
+                  <p class="card-text mb-1">
+                    <strong>Material:</strong> Algodón
+                  </p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fboogzelclothing.com%2Fcdn%2Fshop%2Ffiles%2Fy2kcamouflagetubetopboogzelclothing_1_1024x.jpg%3Fv%3D1727061571&f=1&nofb=1&ipt=8254cd2ada780c0a24c48c4569694811ed3632c52297b9020ece7e3797bd475d"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Blusa camouflage</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $40.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> XS - XL</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Verde militar</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Algodón</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 6: Blusa camouflage -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fboogzelclothing.com%2Fcdn%2Fshop%2Ffiles%2Fy2kcamouflagetubetopboogzelclothing_1_1024x.jpg%3Fv%3D1727061571&f=1&nofb=1&ipt=8254cd2ada780c0a24c48c4569694811ed3632c52297b9020ece7e3797bd475d"
+                  class="card-img-top"
+                  alt="Blusa camouflage"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Blusa camouflage</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $40000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> XS - XL</p>
+                  <p class="card-text mb-1">
+                    <strong>Color:</strong> Verde militar
+                  </p>
+                  <p class="card-text mb-1">
+                    <strong>Material:</strong> Algodón
+                  </p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fc2%2F2a%2Fb1%2Fc22ab1588f15a58682933f8c5446a0c1.jpg&f=1&nofb=1&ipt=ad2636629897da3fc9194b109cb6cb5adf59c1f61414354cf1d0ac89eedd0dfd"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Camisa Korn</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $60.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Negro y gris</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Algodón</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 7: Camisa Korn -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fc2%2F2a%2Fb1%2Fc22ab1588f15a58682933f8c5446a0c1.jpg&f=1&nofb=1&ipt=ad2636629897da3fc9194b109cb6cb5adf59c1f61414354cf1d0ac89eedd0dfd"
+                  class="card-img-top"
+                  alt="Camisa Korn"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Camisa Korn</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $60000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
+                  <p class="card-text mb-1">
+                    <strong>Color:</strong> Negro y gris
+                  </p>
+                  <p class="card-text mb-1">
+                    <strong>Material:</strong> Algodón
+                  </p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F23%2F51%2Fcd%2F2351cde234b31496f7687b8f8430023d.jpg&f=1&nofb=1&ipt=1d8f71f974baad0add9cb3ecc9936007923249776854b95ccabe3364a593a064"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Chaqueta de dragon</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $130.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Algodón</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 8: Chaqueta de dragon -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F23%2F51%2Fcd%2F2351cde234b31496f7687b8f8430023d.jpg&f=1&nofb=1&ipt=1d8f71f974baad0add9cb3ecc9936007923249776854b95ccabe3364a593a064"
+                  class="card-img-top"
+                  alt="Chaqueta de dragon"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Chaqueta de dragon</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $130000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
+                  <p class="card-text mb-1">
+                    <strong>Material:</strong> Algodón
+                  </p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2d%2Fd7%2Fca%2F2dd7ca9d47af5fa56320ac0bdefba76d.jpg&f=1&nofb=1&ipt=85bb07dc62b35e60cb0bd5fca5571b0524b84739cdda3aad3a67436d7a3c2069"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Chaqueta red dot</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $150.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Algodón</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 9: Chaqueta red dot -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2d%2Fd7%2Fca%2F2dd7ca9d47af5fa56320ac0bdefba76d.jpg&f=1&nofb=1&ipt=85bb07dc62b35e60cb0bd5fca5571b0524b84739cdda3aad3a67436d7a3c2069"
+                  class="card-img-top"
+                  alt="Chaqueta red dot"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Chaqueta red dot</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $150000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> S - XL</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
+                  <p class="card-text mb-1">
+                    <strong>Material:</strong> Algodón
+                  </p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F53%2F19%2F64%2F531964ded838c9dfaa62dae631f25f5a.jpg&f=1&nofb=1&ipt=0ac1d22167bf5497f5001d4bf148c2291c60e59176163cb474cb1e11471994f7"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Beannie telaraña</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $25.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> Unica</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Algodón</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 10: Beanie telaraña -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F53%2F19%2F64%2F531964ded838c9dfaa62dae631f25f5a.jpg&f=1&nofb=1&ipt=0ac1d22167bf5497f5001d4bf148c2291c60e59176163cb474cb1e11471994f7"
+                  class="card-img-top"
+                  alt="Beanie telaraña"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Beanie telaraña</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $25000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> Única</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Negro</p>
+                  <p class="card-text mb-1">
+                    <strong>Material:</strong> Algodón
+                  </p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FFossil-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1&ipt=4992a9a8fef0aa5549e36ebab998dea105f88e2802a9cf003747a4f7a811298b"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Cinturon de cuero rojo</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $80.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> Unica</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Rojo</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Cuero</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 11: Cinturón de cuero rojo -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FFossil-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1&ipt=4992a9a8fef0aa5549e36ebab998dea105f88e2802a9cf003747a4f7a811298b"
+                  class="card-img-top"
+                  alt="Cinturón de cuero rojo"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Cinturón de cuero rojo</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $80000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> Única</p>
+                  <p class="card-text mb-1"><strong>Color:</strong> Rojo</p>
+                  <p class="card-text mb-1"><strong>Material:</strong> Cuero</p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
-          >
-            <!-- Ejemplo de una card con 6 atributos -->
-            <div class="card" style="width: 18rem">
-              <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FChicos-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1&ipt=73dc15bbfbc3222667817d606794713e3bb7b4ccb554e66a05043e2e83f64d40"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">Cinturon tipo cebra</h5>
-                <p class="card-text mb-1"><strong>Precio:</strong> $80.000</p>
-                <p class="card-text mb-1"><strong>Talla:</strong> Unica</p>
-                <p class="card-text mb-1"><strong>Color:</strong> Blancoy negro</p>
-                <p class="card-text mb-1"><strong>Material:</strong> Cuero</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  style="background-color: #5a1a1a"
-                  >Comprar</a
-                >
+
+            <!-- Producto 12: Cinturón tipo cebra -->
+            <div
+              class="col-sm-6 col-md-4 col-lg-3 py-5 d-flex justify-content-center"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbackwardfashion.com%2Fwp-content%2Fuploads%2F2023%2F02%2FChicos-Y2K-Belt-1024x1024.jpeg&f=1&nofb=1&ipt=73dc15bbfbc3222667817d606794713e3bb7b4ccb554e66a05043e2e83f64d40"
+                  class="card-img-top"
+                  alt="Cinturón tipo cebra"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Cinturón tipo cebra</h5>
+                  <p class="card-text mb-1"><strong>Precio:</strong> $80000</p>
+                  <p class="card-text mb-1"><strong>Talla:</strong> Única</p>
+                  <p class="card-text mb-1">
+                    <strong>Color:</strong> Blanco y negro
+                  </p>
+                  <p class="card-text mb-1"><strong>Material:</strong> Cuero</p>
+                  <button
+                    class="btn btn-primary"
+                    style="background-color: #5a1a1a; border-color: #5a1a1a"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- Sección de agregar artículo -->
       <section id="add-product">
-        <div class="mt-5 d-flex justify-content-center">
-        <div class="col-lg-6 col-sm-12">
-          <div class="card">
-            <div class="card-header text-center fw-bold fs-3">Agregar Producto</div>
-            <form class="p-3 row g-3 form" novalidate>
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputNombre"
-                  placeholder="Nombre del producto"
-                  required
-                />
-                <label for="inputNombre">Nombre</label>
+        <div class="container-fluid">
+          <div class="row justify-content-center mt-5 pb-5">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+              <div class="card shadow">
+                <div
+                  class="card-header text-center fw-bold fs-3"
+                  style="background-color: #5a1a1a; color: white"
+                >
+                  Agregar Nuevo Producto
+                </div>
+                <div class="card-body">
+                  <form class="form" novalidate>
+                    <div class="row g-3">
+                      <!-- Campo nombre del producto -->
+                      <div class="col-12">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputNombre"
+                            placeholder="Nombre del producto"
+                            required
+                          />
+                          <label for="inputNombre">Nombre del producto</label>
+                        </div>
+                      </div>
+
+                      <!-- Campo precio -->
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="inputPrecio"
+                            placeholder="Precio"
+                            required
+                            min="1000"
+                            step="1000"
+                          />
+                          <label for="inputPrecio"
+                            >Precio (mínimo $1,000)</label
+                          >
+                        </div>
+                      </div>
+
+                      <!-- Campo talla -->
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputTalla"
+                            placeholder="Talla"
+                            required
+                          />
+                          <label for="inputTalla">Talla</label>
+                        </div>
+                      </div>
+
+                      <!-- Campo color -->
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputColor"
+                            placeholder="Color"
+                            required
+                          />
+                          <label for="inputColor">Color</label>
+                        </div>
+                      </div>
+
+                      <!-- Campo material -->
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputMaterial"
+                            placeholder="Material"
+                            required
+                          />
+                          <label for="inputMaterial">Material</label>
+                        </div>
+                      </div>
+
+                      <!-- Campo URL de imagen -->
+                      <div class="col-12">
+                        <div class="form-floating">
+                          <input
+                            type="url"
+                            class="form-control"
+                            id="inputImagen"
+                            placeholder="URL de imagen"
+                            required
+                          />
+                          <label for="inputImagen">URL de imagen</label>
+                        </div>
+                      </div>
+
+                      <!-- Botones del formulario -->
+                      <div class="col-12 d-flex justify-content-end gap-2">
+                        <button type="reset" class="btn btn-outline-secondary">
+                          Limpiar formulario
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          style="
+                            background-color: #5a1a1a;
+                            border-color: #5a1a1a;
+                          "
+                        >
+                          Agregar producto
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="inputPrecio"
-                  placeholder="Precio"
-                  required
-                  min="0"
-                />
-                <label for="inputPrecio">Precio</label>
-              </div>
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputTalla"
-                  placeholder="Talla"
-                  required
-                />
-                <label for="inputTalla">Talla</label>
-              </div>
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputColor"
-                  placeholder="Color"
-                  required
-                />
-                <label for="inputColor">Color</label>
-              </div>
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputMaterial"
-                  placeholder="Material"
-                  required
-                />
-                <label for="inputMaterial">Material</label>
-              </div>
-              <div class="form-floating">
-                <input
-                  type="url"
-                  class="form-control"
-                  id="inputImagen"
-                  placeholder="URL de imagen"
-                  required
-                />
-                <label for="inputImagen">URL de imagen</label>
-              </div>
-              <div class="d-flex justify-content-end">
-                <button type="reset" class="btn btn-warning me-2">
-                  Limpiar
-                </button>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
+      </section>
+    </main>
+
+    <!-- Carrito de compras (dropdown oculto por defecto) -->
+    <div
+      id="cart-dropdown"
+      class="position-absolute end-0 mt-2 me-5 bg-white border rounded shadow"
+      style="z-index: 999; min-width: 350px; display: none"
+    >
+      <div
+        class="p-3 border-bottom d-flex justify-content-between align-items-center"
+      >
+        <h6 class="mb-0 fw-bold">Carrito de compras</h6>
+        <button id="empty-cart-btn" class="btn btn-sm btn-danger">
+          Vaciar carrito
+        </button>
+      </div>
+      <div id="cart-items" class="p-3">
+        <p class="text-muted mb-0">El carrito está vacío</p>
       </div>
     </div>
-    </section>
-    </main>
-        <!-- Carrito de compras (dropdown oculto por defecto) -->
-<div id="cart-dropdown" class="position-absolute end-0 mt-2 me-5 bg-white border rounded shadow" style="z-index: 999; min-width: 300px; display: none;">
-  <div class="p-2 border-bottom d-flex justify-content-between align-items-center">
-    <span class="fw-bold">Carrito de compras</span>
-    <button id="empty-cart-btn" class="btn btn-sm btn-danger">Vaciar carrito</button>
-  </div>
-  <div id="cart-items" class="p-2"></div>
-</div>
-    <footer class="text-center py-4">
-      <p class="mb-0">© 2023 LUNATIX. Todos los derechos reservados.</p>
-      <p class="mb-0">Dise
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+      <div class="container">
+        <p class="mb-1">© 2024 LUNATIX. Todos los derechos reservados.</p>
+        <p class="mb-0">Diseñado para espíritus libres y noctámbulos urbanos</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/script.js"></script>
   </body>
-  <script src="/js/script.js"></script> 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"
-  ></script>
-  
 </html>
